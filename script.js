@@ -31,6 +31,18 @@ const serpent = {
 		ctx.fillRect(this.x,this.y,scale,scale);
 		
 	},
+	
+	gameOver:function(){
+		let isOver = false; 
+		for(var q =0 ; q<this.queu.length;q++){
+			if(this.x == this.queu[q].x && this.y == this.queu[q].y){
+				isOver = true;	
+				break;
+						
+			}
+		}
+		return isOver;
+	},
 
 	seDeplacer:function(){
 
@@ -152,14 +164,21 @@ function gameSetUp(){
 	
 	pomme.draw();
 	serpent.draw();
+	if(serpent.gameOver()){
+		return ;	
+	}
 	serpent.seDeplacer();
 
 	if(serpent.mange(pomme)){
 		pomme.changePosition();
-	}	
+	}
+	
+	console.log(serpent.gameOver());	
 
 	
-	window.setTimeout(gameSetUp,200);
+	
+	window.setTimeout(gameSetUp,100);	
+	
 }
 
 
