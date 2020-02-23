@@ -8,6 +8,7 @@ let speedFlow = 100;
 const nombrePosX = canvasWidth/scale; //nombre de position en x que pourais occuper la tete du serpent
 const nombrePosY = canvasHeight/scale;//nombre de position en x que pourais occuper la tete du serpent
 
+
 function levelUp(total)
 {
 	if(total%5 === 0)
@@ -15,6 +16,9 @@ function levelUp(total)
 	else
 		return false;
 }
+
+var d = "right"; //la direction global
+ 	
 
 
 //creation de  du serpent
@@ -81,26 +85,42 @@ const serpent = {
 		{
 				
 			case "down":
-				serpent.xVitess = 0;
-				serpent.yVitess = 1*scale;
+				if(d != "up"){
+					serpent.xVitess = 0;
+					serpent.yVitess = 1*scale;
+					d = direction ;				
+				}
 				break;
 			case "up":
-				serpent.xVitess = 0;
-				serpent.yVitess = -1*scale;
+				if(d != "down"){
+					serpent.xVitess = 0;
+					serpent.yVitess = -1*scale;	
+					d = direction ;			
+				}
+				
 				break;
 			case "right":
-				serpent.yVitess = 0;
-				serpent.xVitess = 1*scale;
+				if(d != "left"){
+					serpent.yVitess = 0;
+					serpent.xVitess = 1*scale;
+					d = direction ;				
+				}
+				
 				break;
 
 			case "left":
-				serpent.yVitess = 0;
-				serpent.xVitess = -1*scale;
+				if(d != "right"){
+					serpent.yVitess = 0;
+					serpent.xVitess = -1*scale;
+					d = direction ;				
+				}
+				
 				break;
 			default:
 				// statements_def
 				break;
 		}
+		//on donne la direction temporaire à la direction global pour pouvoir verifier;
 	},
 	mange:function(pomme){
 		if(this.x == pomme.x && this.y == pomme.y){
