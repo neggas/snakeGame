@@ -7,6 +7,7 @@ const scale = 10;
 const nombrePosX = canvasWidth/scale; //nombre de position en x que pourais occuper la tete du serpent
 const nombrePosY = canvasHeight/scale;//nombre de position en x que pourais occuper la tete du serpent
 
+var d = ""; //la direction global
 
 
 //creation de  du serpent
@@ -73,26 +74,38 @@ const serpent = {
 		{
 				
 			case "down":
-				serpent.xVitess = 0;
-				serpent.yVitess = 1*scale;
+				if(d != "up"){
+					serpent.xVitess = 0;
+					serpent.yVitess = 1*scale;				
+				}
 				break;
 			case "up":
-				serpent.xVitess = 0;
-				serpent.yVitess = -1*scale;
+				if(d != "down"){
+					serpent.xVitess = 0;
+					serpent.yVitess = -1*scale;				
+				}
+				
 				break;
 			case "right":
-				serpent.yVitess = 0;
-				serpent.xVitess = 1*scale;
+				if(d != "left"){
+					serpent.yVitess = 0;
+					serpent.xVitess = 1*scale;				
+				}
+				
 				break;
 
 			case "left":
-				serpent.yVitess = 0;
-				serpent.xVitess = -1*scale;
+				if(d != "right"){
+					serpent.yVitess = 0;
+					serpent.xVitess = -1*scale;				
+				}
+				
 				break;
 			default:
 				// statements_def
 				break;
 		}
+		d = direction ;//on donne la direction temporaire à la direction global pour pouvoir verifier;
 	},
 	mange:function(pomme){
 		if(this.x == pomme.x && this.y == pomme.y){
