@@ -180,12 +180,8 @@ function gameSetUp(){
 	}
 	serpent.seDeplacer();
 
-	if(serpent.mange(pomme)){
-		pomme.changePosition();
-	
-
-	
-	console.log(serpent.gameOver());	
+	if(serpent.mange(pomme))
+		pomme.changePosition();	
 	window.setTimeout(gameSetUp,100);	
 }
 
