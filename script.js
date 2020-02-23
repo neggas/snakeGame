@@ -4,9 +4,17 @@ const ctx = canvas.getContext('2d');
 const canvasHeight = canvas.height;
 const canvasWidth = canvas.width;
 const scale = 10;
+let speedFlow = 100;
 const nombrePosX = canvasWidth/scale; //nombre de position en x que pourais occuper la tete du serpent
 const nombrePosY = canvasHeight/scale;//nombre de position en x que pourais occuper la tete du serpent
 
+function levelUp(total)
+{
+	if(total%5 === 0)
+		return true;
+	else
+		return false;
+}
 
 
 //creation de  du serpent
@@ -139,18 +147,21 @@ function gameSetUp(){
 
 	if(serpent.mange(pomme)){
 		pomme.changePosition();
-	}	
+	}
+
 
 	
-	window.setTimeout(gameSetUp,200);
+	window.setTimeout(gameSetUp,speedFlow);
 }
 
 
 //controle par le clavier
-window.addEventListener("keydown", (event)=>{
+window
+.addEventListener("keydown", (event)=>{
 	let direction = event.key.replace("Arrow","").toLowerCase();
 	serpent.changeDirection(direction);
 }, false)
+
 
 gameSetUp();
 
