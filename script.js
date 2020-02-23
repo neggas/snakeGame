@@ -12,8 +12,8 @@ var d = "right"; //la direction global
 
 //creation de  du serpent
 const serpent = {
-	x:0,
-	y:0,
+	x:canvas.width/2,
+	y:canvas.height/2,
 	xVitess:1*scale,
 	yVitess:0,
 	total:0,
@@ -138,8 +138,8 @@ const serpent = {
 //creation de la pomme
 
 const pomme = {
-	x:0, 
-	y:0,
+	x:(Math.floor(Math.random()*nombrePosX-1)+1)*scale, 
+	y:(Math.floor(Math.random()*nombrePosY-1)+1)*scale,
 
 	draw:function(){
 		ctx.fillStyle="red";
