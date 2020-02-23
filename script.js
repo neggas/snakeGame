@@ -23,8 +23,8 @@ var d = "right"; //la direction global
 
 //creation de  du serpent
 const serpent = {
-	x:0,
-	y:0,
+	x:canvas.width/2,
+	y:canvas.height/2,
 	xVitess:1*scale,
 	yVitess:0,
 	total:0,
@@ -41,6 +41,18 @@ const serpent = {
     	}
 		ctx.fillRect(this.x,this.y,scale,scale);
 		
+	},
+	
+	gameOver:function(){
+		let isOver = false; 
+		for(var q =0 ; q<this.queu.length;q++){
+			if(this.x == this.queu[q].x && this.y == this.queu[q].y){
+				isOver = true;	
+				break;
+						
+			}
+		}
+		return isOver;
 	},
 
 	seDeplacer:function(){
@@ -137,8 +149,8 @@ const serpent = {
 //creation de la pomme
 
 const pomme = {
-	x:0, 
-	y:0,
+	x:(Math.floor(Math.random()*nombrePosX-1)+1)*scale, 
+	y:(Math.floor(Math.random()*nombrePosY-1)+1)*scale,
 
 	draw:function(){
 		ctx.fillStyle="red";
@@ -163,15 +175,18 @@ function gameSetUp(){
 	
 	pomme.draw();
 	serpent.draw();
+	if(serpent.gameOver()){
+		return ;	
+	}
 	serpent.seDeplacer();
 
 	if(serpent.mange(pomme)){
 		pomme.changePosition();
-	}
-
+	
 
 	
-	window.setTimeout(gameSetUp,speedFlow);
+	console.log(serpent.gameOver());	
+	window.setTimeout(gameSetUp,100);	
 }
 
 
