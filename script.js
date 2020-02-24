@@ -161,6 +161,15 @@ const pomme = {
 	changePosition:function(){
 		this.x = (Math.floor(Math.random()*nombrePosX-1)+1)*scale;
 		this.y = (Math.floor(Math.random()*nombrePosY-1)+1)*scale;
+	},
+	
+	conflictWithSnake:function(snake){
+		for(var qs =0;qs<snake.queu.length;qs++){
+			if(this.x == snake.queu[qs].x && this.y == snake.queu[qs].y){
+				this.changePosition();
+				break;
+			}
+		}
 	}
 }
 
@@ -173,7 +182,7 @@ function gameSetUp(){
 
 
 	ctx.clearRect(0,0,canvasWidth,canvasHeight);
-	
+	pomme.conflictWithSnake(serpent);
 	pomme.draw();
 	serpent.draw();
 	if(serpent.gameOver()){
