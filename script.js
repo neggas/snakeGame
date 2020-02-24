@@ -136,6 +136,7 @@ const serpent = {
 	},
 	mange:function(pomme){
 		if(this.x == pomme.x && this.y == pomme.y){
+			document.getElementById("eat").play();
 			this.total++;
 			return true;
 		}
