@@ -43,7 +43,7 @@ const serpent = {
 		
 	},
 	
-	gameOver:function(){
+	gameOver:function(ctx){
 		let isOver = false; 
 		for(var q =0 ; q<this.queu.length;q++){
 			if(this.x == this.queu[q].x && this.y == this.queu[q].y){
@@ -185,8 +185,15 @@ function gameSetUp(){
 	pomme.conflictWithSnake(serpent);
 	pomme.draw();
 	serpent.draw();
-	if(serpent.gameOver()){
-		return ;	
+	if(serpent.gameOver(ctx)){
+		ctx.fillStyle = "white";
+		ctx.fillRect(0,0,canvasHeight,canvasWidth);
+
+		ctx.font ="40px roboto";
+		ctx.fillStyle = "red";
+		ctx.fillText("GAME OVER",canvasHeight/38,canvasWidth/2);
+		return;
+		
 	}
 	serpent.seDeplacer();
 
